@@ -19,7 +19,7 @@
     <properties>
         <java.version>11</java.version>
         <akka.version>2.5.19</akka.version>
-        <jackson.version>2.9.8</jackson.version>
+        <jackson.version>2.11.1</jackson.version>
         <model.mapper.version>2.1.0</model.mapper.version>
     </properties>
 
