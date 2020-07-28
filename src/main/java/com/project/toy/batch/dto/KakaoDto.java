@@ -109,8 +109,8 @@ public class KakaoDto {
         private String addressName;                 // 전체 지번 주소
         @JsonProperty("road_address_name")
         private String roadAddressName;             // 전체 도로명 주소
-        private double x;                           // x 좌표
-        private double y;                           // y 좌표
+        private String x;                           // x 좌표
+        private String y;                           // y 좌표
         @JsonProperty("place_url")
         private String placeUrl;                    // 상세페이지 URL
         private String distance;                    // 중심좌표까지 거리

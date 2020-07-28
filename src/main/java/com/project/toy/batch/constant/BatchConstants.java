@@ -16,7 +16,7 @@ public class BatchConstants {
     public final static String ACTOR_MSG_PLACE_ACTOR_START      =       "placeActorStart";
 
     // Interval
-    public final static int PLACE_INTERVAL_DAY                  =       1;
+    public final static int PLACE_INTERVAL_HOUR                  =       24;
 
     // Spring Bean Name
     public final static String SPRING_BATCH_SERVICE_NAME        =       "batchService";
@@ -29,4 +29,7 @@ public class BatchConstants {
     // HttpsConnection Configuration
     public final static int KAKAO_API_CONNECTION_TIMEOUT        =       3 * 1000;
     public final static int KAKAO_API_READ_TIMEOUT              =       3 * 1000;
+
+    // Kakao Api Filter
+    public final static String CATEGORY_GROUP_CODE_RESTAURANT   =       "FD6";
 }

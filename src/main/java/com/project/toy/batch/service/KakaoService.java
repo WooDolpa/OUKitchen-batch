@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,21 +29,27 @@ public class KakaoService {
     @Value("${kakao.api.url}")
     private String apiUrl;
 
-    public void sendLocalKeyword (final KakaoDto.KeywordPlaceReqDto dto){
+
+    /**
+     * 카카오 키워드 장소 검색 API
+     *
+     * @param dto
+     * @return
+     */
+    public Optional<KakaoDto.KeywordPlaceResDto> sendLocalKeyword (final KakaoDto.KeywordPlaceReqDto dto){
 
         HttpsURLConnection conn = null;
         BufferedReader br = null;
         KakaoDto.KeywordPlaceResDto keywordPlaceResDto = null;
 
         int responseCode = 400;
-        int page = 1;
 
         try {
 
             StringBuilder sb = new StringBuilder();
             String line;
 
-            String urlString  = apiUrl+"?query="+ URLEncoder.encode(dto.getQuery(),"UTF-8")+"&page="+page;
+            String urlString  = apiUrl+"?query="+ URLEncoder.encode(dto.getQuery(),"UTF-8")+"&page="+dto.getPage();
             URL url = new URL(urlString);
 
             conn =  (HttpsURLConnection)url.openConnection();
@@ -78,10 +85,10 @@ public class KakaoService {
             log.warn("sendLocalKeyword|Exception|{}", ex.getMessage());
         }finally {
 
-            if(keywordPlaceResDto != null){
-                log.info("keywordPlaceResDto|Meta|{}", keywordPlaceResDto.getMeta());
-                for(KakaoDto.DocumentsDto documentsDto : keywordPlaceResDto.getDocuments())
-                log.info("keywordPlaceResDto|Documents|{}", documentsDto);
+            if(keywordPlaceResDto == null){
+                return Optional.empty();
+            }else{
+                return Optional.ofNullable(keywordPlaceResDto);
             }
 
         }

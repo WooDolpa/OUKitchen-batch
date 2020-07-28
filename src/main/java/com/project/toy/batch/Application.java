@@ -35,7 +35,7 @@ public class Application {
         ActorSystem actorSystem = ActorSystem.create(BatchConstants.ACTOR_SYSTEM_NAME, config);
         // 공유 주방 등록을 처리하는 Actor
         ActorRef placeActor = actorSystem.actorOf(Props.create(PlaceActor.class), BatchConstants.ACTOR_PLACE_NAME);
-        Cancellable placeActorCancellable = actorSystem.scheduler().schedule(Duration.Zero(), Duration.create(BatchConstants.PLACE_INTERVAL_DAY, TimeUnit.MINUTES), placeActor, BatchConstants.ACTOR_MSG_PLACE_ACTOR_START, actorSystem.dispatcher(), null);
+        Cancellable placeActorCancellable = actorSystem.scheduler().schedule(Duration.Zero(), Duration.create(BatchConstants.PLACE_INTERVAL_HOUR, TimeUnit.HOURS), placeActor, BatchConstants.ACTOR_MSG_PLACE_ACTOR_START, actorSystem.dispatcher(), null);
     }
 }
 
